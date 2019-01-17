@@ -1,6 +1,5 @@
 import * as types from "./actionTypes";
 import axios from "../../axios-orders";
-import { API_CALL } from "../../config/api";
 
 export const addIngredient = name => {
   return {
@@ -32,7 +31,7 @@ const fetchIngredientsFailed = () => {
 export const initIngredients = () => {
   return dispatch => {
     axios
-      .get(API_CALL)
+      .get("https://cool-burger-builder.firebaseio.com/ingredients.json")
       .then(response => {
         dispatch(setIngredients(response.data));
       })
