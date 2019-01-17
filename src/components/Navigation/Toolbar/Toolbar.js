@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import NavigationItems from "../NavigationItems/NavigationItems";
 import DrawerToggle from "../SideDrawer/DrawerToggle/DrawerToggle";
@@ -9,7 +10,9 @@ const Toolbar = props => (
   <header className="Toolbar">
     <DrawerToggle clicked={props.drawerToggleClicked} />
     <div className="ToolbarLogo">
-      <Logo />
+      <Link to="/">
+        <Logo />
+      </Link>
     </div>
     <nav className="DesktopOnly">
       <NavigationItems isAuth={props.isAuth} />
