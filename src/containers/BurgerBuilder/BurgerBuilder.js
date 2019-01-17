@@ -35,7 +35,7 @@ class BurgerBuilder extends Component {
       this.setState({ purchasing: true });
     } else {
       this.props.onSetAuthRedirectPath("/checkout");
-      this.props.history.push("/login");
+      this.props.history.push("/auth");
     }
   };
 
