@@ -28,6 +28,18 @@ const fetchIngredientsFailed = () => {
   };
 };
 
+export const initIngredients = () => async dispatch => {
+  try {
+    const res = await axios.get(
+      "https://cool-burger-builder.firebaseio.com/ingredients.json"
+    );
+    dispatch(setIngredients(res.data));
+  } catch (error) {
+    dispatch(fetchIngredientsFailed(error));
+  }
+};
+
+/*
 export const initIngredients = () => {
   return dispatch => {
     axios
@@ -40,3 +52,4 @@ export const initIngredients = () => {
       });
   };
 };
+*/

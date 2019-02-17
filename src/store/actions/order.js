@@ -22,18 +22,14 @@ const purchaseBurgerStart = () => {
   };
 };
 
-export const purchaseBurger = (orderData, token) => {
-  return dispatch => {
-    dispatch(purchaseBurgerStart());
-    axios
-      .post("/orders.json?auth=" + token, orderData)
-      .then(res => {
-        dispatch(purchaseBurgerSuccess(res.data.name, orderData));
-      })
-      .catch(error => {
-        dispatch(purchaseBurgerFail(error));
-      });
-  };
+export const purchaseBurger = (orderData, token) => async dispatch => {
+  dispatch(purchaseBurgerStart());
+  try {
+    const res = await axios.post("/orders.json?auth=" + token, orderData);
+    dispatch(purchaseBurgerSuccess(res.data.name, orderData));
+  } catch (error) {
+    dispatch(purchaseBurgerFail(error));
+  }
 };
 
 export const purchaseInit = () => {
@@ -62,6 +58,39 @@ export const fetchOrdersStart = () => {
   };
 };
 
+export const fetchOrders = (token, userId) => async dispatch => {
+  dispatch(fetchOrdersStart());
+  try {
+    const queryParams =
+      "?auth=" + token + '&orderBy="userId"&equalTo="' + userId + '"';
+    const res = await axios.get("/orders.json" + queryParams);
+    const fetchedOrders = [];
+    for (let key in res.data) {
+      fetchedOrders.push({ ...res.data[key], id: key });
+    }
+    dispatch(fetchOrdersSuccess(fetchedOrders));
+  } catch (error) {
+    dispatch(fetchOrdersFail(error));
+  }
+};
+
+/**
+export const purchaseBurger = (orderData, token) => {
+  return dispatch => {
+    dispatch(purchaseBurgerStart());
+    axios
+      .post("/orders.json?auth=" + token, orderData)
+      .then(res => {
+        dispatch(purchaseBurgerSuccess(res.data.name, orderData));
+      })
+      .catch(error => {
+        dispatch(purchaseBurgerFail(error));
+      });
+  };
+};
+ */
+
+/*
 export const fetchOrders = (token, userId) => {
   return dispatch => {
     dispatch(fetchOrdersStart());
@@ -81,3 +110,4 @@ export const fetchOrders = (token, userId) => {
       });
   };
 };
+ */
