@@ -1,12 +1,12 @@
-import axios from "axios";
-import { put, delay } from "redux-saga/effects";
+import axios from 'axios';
+import { put, delay } from 'redux-saga/effects';
 
-import * as actions from "../actions/auth";
+import * as actions from '../actions/auth';
 
 export function* logoutSaga(action) {
-  yield localStorage.removeItem("token");
-  yield localStorage.removeItem("expirationDate");
-  yield localStorage.removeItem("userId");
+  yield localStorage.removeItem('token');
+  yield localStorage.removeItem('expirationDate');
+  yield localStorage.removeItem('userId');
   yield put(actions.logoutSucceed());
 }
 
@@ -23,19 +23,19 @@ export function* authUserSaga(action) {
     returnSecureToken: true
   };
   let url =
-    "https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyCo7mFg6QpM4s4o3El23enw8RMND48Qdq8";
+    'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyCo7mFg6QpM4s4o3El23enw8RMND48Qdq8';
   if (!action.isSignup) {
     url =
-      "https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyCo7mFg6QpM4s4o3El23enw8RMND48Qdq8";
+      'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyCo7mFg6QpM4s4o3El23enw8RMND48Qdq8';
   }
   try {
     const response = yield axios.post(url, authData);
     const expirationDate = yield new Date(
       new Date().getTime() + response.data.expiresIn * 1000
     );
-    yield localStorage.setItem("token", response.data.idToken);
-    yield localStorage.setItem("expirationDate", expirationDate);
-    yield localStorage.setItem("userId", response.data.localId);
+    yield localStorage.setItem('token', response.data.idToken);
+    yield localStorage.setItem('expirationDate', expirationDate);
+    yield localStorage.setItem('userId', response.data.localId);
     yield put(
       actions.authSuccess(response.data.idToken, response.data.localId)
     );
@@ -46,17 +46,17 @@ export function* authUserSaga(action) {
 }
 
 export function* authCheckStateSaga(action) {
-  const token = yield localStorage.getItem("token");
+  const token = yield localStorage.getItem('token');
   if (!token) {
     yield put(actions.logout());
   } else {
     const expirationDate = yield new Date(
-      localStorage.getItem("expirationDate")
+      localStorage.getItem('expirationDate')
     );
     if (expirationDate <= new Date()) {
       yield put(actions.logout());
     } else {
-      const userId = yield localStorage.getItem("userId");
+      const userId = yield localStorage.getItem('userId');
       yield put(actions.authSuccess(token, userId));
       yield put(
         actions.checkAuthTimeout(

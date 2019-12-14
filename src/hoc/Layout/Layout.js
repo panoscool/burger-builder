@@ -1,45 +1,33 @@
-import React, { Component, Fragment } from "react";
-import { connect } from "react-redux";
+import React, { Fragment, useState } from 'react';
+import { useSelector } from 'react-redux';
 
-import Toolbar from "../../components/Navigation/Toolbar/Toolbar";
-import SideDrawer from "../../components/Navigation/SideDrawer/SideDrawer";
-import "./Layout.css";
+import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
+import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer';
+import './Layout.css';
 
-class Layout extends Component {
-  state = {
-    showSideDrawer: false
+function Layout(props) {
+  const { token } = useSelector((state) => state.auth);
+
+  const [showSideDrawer, setSideDrawer] = useState(false);
+
+  const sideDrawerToggleHandler = () => {
+    setSideDrawer(!showSideDrawer)
   };
 
-  sideDrawerClosedHandler = () => {
-    this.setState({ showSideDrawer: false });
-  };
-
-  sideDrawerToggleHandler = () => {
-    this.setState(prevState => {
-      return { showSideDrawer: !prevState.showSideDrawer };
-    });
-  };
-
-  render() {
-    return (
-      <Fragment>
-        <Toolbar
-          drawerToggleClicked={this.sideDrawerToggleHandler}
-          isAuth={this.props.isAuthenticated}
-        />
-        <SideDrawer
-          open={this.state.showSideDrawer}
-          closed={this.sideDrawerClosedHandler}
-          isAuth={this.props.isAuthenticated}
-        />
-        <main className="Content">{this.props.children}</main>
-      </Fragment>
-    );
-  }
+  return (
+    <Fragment>
+      <Toolbar
+        drawerToggleClicked={sideDrawerToggleHandler}
+        isAuth={token}
+      />
+      <SideDrawer
+        open={showSideDrawer}
+        closed={sideDrawerToggleHandler}
+        isAuth={token}
+      />
+      <main className="Content">{props.children}</main>
+    </Fragment>
+  );
 }
 
-const mapStateToProps = state => ({
-  isAuthenticated: state.auth.token
-});
-
-export default connect(mapStateToProps)(Layout);
+export default Layout;

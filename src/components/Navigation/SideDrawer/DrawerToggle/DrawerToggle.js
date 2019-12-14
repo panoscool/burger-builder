@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import "./DrawerToggle.css";
+import './DrawerToggle.css';
 
-const DrawerToggle = props => (
+const DrawerToggle = (props) => (
   <div className="DrawerToggle" onClick={props.clicked}>
     <div />
     <div />

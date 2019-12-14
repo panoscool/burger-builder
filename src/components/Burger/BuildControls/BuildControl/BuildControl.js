@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import "./BuildControl.css";
+import './BuildControl.css';
 
-const BuildControl = props => (
+const BuildControl = (props) => (
   <div className="BuildControl">
     <div className="Label">{props.label}</div>
     <button className="Less" onClick={props.less} disabled={props.disabled}>

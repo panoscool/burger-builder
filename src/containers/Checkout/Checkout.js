@@ -1,9 +1,9 @@
-import React, { Component, Fragment } from "react";
-import { Route, Redirect } from "react-router-dom";
-import { connect } from "react-redux";
+import React, { Component, Fragment } from 'react';
+import { Route, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import CheckoutSummary from "../../components/Order/CheckoutSummary/CheckoutSummary";
-import ContactData from "../Checkout/ContactData/ContactData";
+import CheckoutSummary from '../../components/Order/CheckoutSummary/CheckoutSummary';
+import ContactData from '../Checkout/ContactData/ContactData';
 
 class Checkout extends Component {
   checkoutCancelled = () => {
@@ -11,7 +11,7 @@ class Checkout extends Component {
   };
 
   checkoutContinued = () => {
-    this.props.history.replace("/checkout/contact-data");
+    this.props.history.replace('/checkout/contact-data');
   };
 
   render() {
@@ -29,7 +29,7 @@ class Checkout extends Component {
             checkoutContinued={this.checkoutContinued}
           />
           <Route
-            path={this.props.match.path + "/contact-data"}
+            path={this.props.match.path + '/contact-data'}
             component={ContactData}
           />
         </Fragment>
@@ -39,7 +39,7 @@ class Checkout extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     ings: state.burgerBuilder.ingredients,
     purchased: state.order.purchased

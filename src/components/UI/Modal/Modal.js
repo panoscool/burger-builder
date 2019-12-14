@@ -1,7 +1,7 @@
-import React, { Component, Fragment } from "react";
+import React, { Component, Fragment } from 'react';
 
-import Backdrop from "../Backdrop/Backdrop";
-import "./Modal.css";
+import Backdrop from '../Backdrop/Backdrop';
+import './Modal.css';
 
 class Modal extends Component {
   shouldComponentUpdate(nextProps, nextState) {
@@ -19,8 +19,8 @@ class Modal extends Component {
         <div
           className="Modal"
           style={{
-            transform: show ? "translateY(0)" : "translateY(-100vh)",
-            opacity: show ? "1" : "0"
+            transform: show ? 'translateY(0)' : 'translateY(-100vh)',
+            opacity: show ? '1' : '0'
           }}
         >
           {children}

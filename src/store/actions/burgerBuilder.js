@@ -1,21 +1,21 @@
-import * as types from "./actionTypes";
-import axios from "../../axios-orders";
+import * as types from './actionTypes';
+import axios from '../../axios-orders';
 
-export const addIngredient = name => {
+export const addIngredient = (name) => {
   return {
     type: types.ADD_INGREDIENT,
     ingredientName: name
   };
 };
 
-export const removeIngredient = name => {
+export const removeIngredient = (name) => {
   return {
     type: types.REMOVE_INGREDIENT,
     ingredientName: name
   };
 };
 
-const setIngredients = ingredients => {
+const setIngredients = (ingredients) => {
   return {
     type: types.FETCH_INGREDIENTS,
     ingredients: ingredients
@@ -28,10 +28,10 @@ const fetchIngredientsFailed = () => {
   };
 };
 
-export const initIngredients = () => async dispatch => {
+export const initIngredients = () => async (dispatch) => {
   try {
     const res = await axios.get(
-      "https://cool-burger-builder.firebaseio.com/ingredients.json"
+      'https://cool-burger-builder.firebaseio.com/ingredients.json'
     );
     dispatch(setIngredients(res.data));
   } catch (error) {

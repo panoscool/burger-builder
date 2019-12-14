@@ -1,4 +1,4 @@
-import * as types from "./actionTypes";
+import * as types from './actionTypes';
 
 export const authStart = () => {
   return {
@@ -14,7 +14,7 @@ export const authSuccess = (token, userId) => {
   };
 };
 
-export const authFail = error => {
+export const authFail = (error) => {
   return {
     type: types.AUTH_FAIL,
     error: error
@@ -33,7 +33,7 @@ export const logoutSucceed = () => {
   };
 };
 
-export const checkAuthTimeout = expirationTime => {
+export const checkAuthTimeout = (expirationTime) => {
   return {
     type: types.AUTH_CHECK_TIMEOUT,
     expirationTime: expirationTime
@@ -55,7 +55,7 @@ export const auth = (email, password, isSignup) => {
   };
 };
 
-export const setAuthRedirectPath = path => {
+export const setAuthRedirectPath = (path) => {
   return {
     type: types.SET_AUTH_REDIRECT_PATH,
     path: path

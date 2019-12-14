@@ -1,5 +1,5 @@
-import * as types from "./actionTypes";
-import axios from "../../axios-orders";
+import * as types from './actionTypes';
+import axios from '../../axios-orders';
 
 const purchaseBurgerSuccess = (id, orderData) => {
   return {
@@ -9,7 +9,7 @@ const purchaseBurgerSuccess = (id, orderData) => {
   };
 };
 
-const purchaseBurgerFail = error => {
+const purchaseBurgerFail = (error) => {
   return {
     type: types.PURCHASE_BURGER_FAIL,
     error: error
@@ -22,10 +22,10 @@ const purchaseBurgerStart = () => {
   };
 };
 
-export const purchaseBurger = (orderData, token) => async dispatch => {
+export const purchaseBurger = (orderData, token) => async (dispatch) => {
   dispatch(purchaseBurgerStart());
   try {
-    const res = await axios.post("/orders.json?auth=" + token, orderData);
+    const res = await axios.post('/orders.json?auth=' + token, orderData);
     dispatch(purchaseBurgerSuccess(res.data.name, orderData));
   } catch (error) {
     dispatch(purchaseBurgerFail(error));
@@ -38,14 +38,14 @@ export const purchaseInit = () => {
   };
 };
 
-const fetchOrdersSuccess = orders => {
+const fetchOrdersSuccess = (orders) => {
   return {
     type: types.FETCH_ORDERS_SUCCESS,
     orders: orders
   };
 };
 
-const fetchOrdersFail = error => {
+const fetchOrdersFail = (error) => {
   return {
     type: types.FETCH_ORDERS_FAIL,
     error: error
@@ -58,12 +58,12 @@ export const fetchOrdersStart = () => {
   };
 };
 
-export const fetchOrders = (token, userId) => async dispatch => {
+export const fetchOrders = (token, userId) => async (dispatch) => {
   dispatch(fetchOrdersStart());
   try {
     const queryParams =
-      "?auth=" + token + '&orderBy="userId"&equalTo="' + userId + '"';
-    const res = await axios.get("/orders.json" + queryParams);
+      '?auth=' + token + '&orderBy="userId"&equalTo="' + userId + '"';
+    const res = await axios.get('/orders.json' + queryParams);
     const fetchedOrders = [];
     for (let key in res.data) {
       fetchedOrders.push({ ...res.data[key], id: key });

@@ -1,14 +1,14 @@
-import React from "react";
+import React from 'react';
 
-import "./Input.css";
+import './Input.css';
 
-const Input = props => {
+const Input = (props) => {
   let inputElement = null;
   let validationError = null;
-  const inputStyles = ["InputElement"];
+  const inputStyles = ['InputElement'];
 
   if (props.invalid && props.shouldValidate && props.touched) {
-    inputStyles.push("Invalid");
+    inputStyles.push('Invalid');
   }
 
   if (props.invalid && props.touched) {
@@ -17,34 +17,34 @@ const Input = props => {
     );
   }
   switch (props.elementType) {
-    case "input":
+    case 'input':
       inputElement = (
         <input
-          className={inputStyles.join(" ")}
+          className={inputStyles.join(' ')}
           {...props.elementConfig}
           value={props.value}
           onChange={props.changed}
         />
       );
       break;
-    case "textarea":
+    case 'textarea':
       inputElement = (
         <textarea
-          className={inputStyles.join(" ")}
+          className={inputStyles.join(' ')}
           {...props.elementConfig}
           value={props.value}
           onChange={props.changed}
         />
       );
       break;
-    case "select":
+    case 'select':
       inputElement = (
         <select
-          className={inputStyles.join(" ")}
+          className={inputStyles.join(' ')}
           value={props.value}
           onChange={props.changed}
         >
-          {props.elementConfig.options.map(option => (
+          {props.elementConfig.options.map((option) => (
             <option key={option.value} value={option.value}>
               {option.displayValue}
             </option>
@@ -55,7 +55,7 @@ const Input = props => {
     default:
       inputElement = (
         <input
-          className={inputStyles.join(" ")}
+          className={inputStyles.join(' ')}
           {...props.elementConfig}
           value={props.value}
         />

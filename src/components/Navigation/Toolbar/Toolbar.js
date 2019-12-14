@@ -1,12 +1,12 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-import NavigationItems from "../NavigationItems/NavigationItems";
-import DrawerToggle from "../SideDrawer/DrawerToggle/DrawerToggle";
-import Logo from "../../Logo/Logo";
-import "./Toolbar.css";
+import NavigationItems from '../NavigationItems/NavigationItems';
+import DrawerToggle from '../SideDrawer/DrawerToggle/DrawerToggle';
+import Logo from '../../Logo/Logo';
+import './Toolbar.css';
 
-const Toolbar = props => (
+const Toolbar = (props) => (
   <header className="Toolbar">
     <DrawerToggle clicked={props.drawerToggleClicked} />
     <div className="ToolbarLogo">
