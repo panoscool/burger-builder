@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 
-import burgerBuilderReducer from './burgerBuilder';
+import burgerReducer from './burger';
 import orderReducer from './order';
 import authReducer from './auth';
 
 export default combineReducers({
-  burgerBuilder: burgerBuilderReducer,
+  burger: burgerReducer,
   order: orderReducer,
   auth: authReducer
 });

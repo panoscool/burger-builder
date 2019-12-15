@@ -59,8 +59,8 @@ export class BurgerBuilder extends Component {
     let burger = this.props.error ? (
       <p style={{ textAlign: 'center' }}>Ingredients can't be loaded!</p>
     ) : (
-      <Spinner />
-    );
+        <Spinner />
+      );
 
     if (this.props.ings) {
       burger = (
@@ -102,9 +102,9 @@ export class BurgerBuilder extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    ings: state.burgerBuilder.ingredients,
-    price: state.burgerBuilder.totalPrice,
-    error: state.burgerBuilder.error,
+    ings: state.burger.ingredients,
+    price: state.burger.totalPrice,
+    error: state.burger.error,
     isAuthenticated: state.auth.token
   };
 };

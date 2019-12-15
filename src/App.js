@@ -8,17 +8,11 @@ import Logout from './containers/Auth/Logout/Logout';
 import Spinner from './components/UI/Spinner/Spinner';
 import { authCheckState } from './store/actions';
 
-const Checkout = lazy(() => {
-  return import('./containers/Checkout/Checkout');
-});
+const Checkout = lazy(() => import('./containers/Checkout/Checkout'));
 
-const Orders = lazy(() => {
-  return import('./containers/Orders/Orders');
-});
+const Orders = lazy(() => import('./containers/Orders/Orders'));
 
-const Auth = lazy(() => {
-  return import('./containers/Auth/Auth');
-});
+const Auth = lazy(() => import('./containers/Auth/Auth'));
 
 function App() {
   const dispatch = useDispatch();
