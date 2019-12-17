@@ -1,33 +1,28 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment, memo } from "react";
 
-import Backdrop from '../Backdrop/Backdrop';
-import './Modal.css';
+import Backdrop from "../Backdrop/Backdrop";
+import "./Modal.css";
 
-class Modal extends Component {
-  shouldComponentUpdate(nextProps, nextState) {
-    return (
-      nextProps.show !== this.props.show ||
-      nextProps.children !== this.props.children
-    );
-  }
-
-  render() {
-    const { show, modalClosed, children } = this.props;
-    return (
-      <Fragment>
-        <Backdrop show={show} clicked={modalClosed} />
-        <div
-          className="Modal"
-          style={{
-            transform: show ? 'translateY(0)' : 'translateY(-100vh)',
-            opacity: show ? '1' : '0'
-          }}
-        >
-          {children}
-        </div>
-      </Fragment>
-    );
-  }
+function Modal({ show, modalClosed, children }) {
+  return (
+    <Fragment>
+      <Backdrop show={show} clicked={modalClosed} />
+      <div
+        className="Modal"
+        style={{
+          transform: show ? "translateY(0)" : "translateY(-100vh)",
+          opacity: show ? "1" : "0"
+        }}
+      >
+        {children}
+      </div>
+    </Fragment>
+  );
 }
 
-export default Modal;
+export default memo(
+  Modal,
+  (prevProps, nextProps) =>
+    nextProps.show === prevProps.show &&
+    nextProps.children === prevProps.children
+);

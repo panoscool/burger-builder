@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
-import NavigationItem from './NavigationItem/NavigationItem';
-import './NavigationItems.css';
+import NavigationItem from "./NavigationItem/NavigationItem";
+import "./NavigationItems.css";
 
-const NavigationItems = (props) => (
+const NavigationItems = props => (
   <ul className="NavigationItems">
     <NavigationItem link="/">Burger Builder</NavigationItem>
     {props.isAuth && <NavigationItem link="/orders">Orders</NavigationItem>}
