@@ -1,7 +1,7 @@
-import React, { Fragment, memo } from "react";
+import React, { Fragment, memo } from 'react';
 
-import Backdrop from "../Backdrop/Backdrop";
-import "./Modal.css";
+import Backdrop from '../Backdrop/Backdrop';
+import './Modal.css';
 
 function Modal({ show, modalClosed, children }) {
   return (
@@ -10,8 +10,8 @@ function Modal({ show, modalClosed, children }) {
       <div
         className="Modal"
         style={{
-          transform: show ? "translateY(0)" : "translateY(-100vh)",
-          opacity: show ? "1" : "0"
+          transform: show ? 'translateY(0)' : 'translateY(-100vh)',
+          opacity: show ? '1' : '0'
         }}
       >
         {children}

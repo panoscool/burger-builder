@@ -1,28 +1,28 @@
-import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-import Button from "../../../components/UI/Button/Button";
-import Input from "../../../components/UI/Input/Input";
-import Spinner from "../../../components/UI/Spinner/Spinner";
-import withErrorHandler from "../../../hoc/withErrorHandler/withErrorHandler";
-import axios from "../../../axios-orders";
-import { purchaseBurger } from "../../../store/actions";
-import { checkValidity } from "../../../shared/utility";
-import "./ContactData.css";
+import Button from '../../../components/UI/Button/Button';
+import Input from '../../../components/UI/Input/Input';
+import Spinner from '../../../components/UI/Spinner/Spinner';
+import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler';
+import axios from '../../../axios-orders';
+import { purchaseBurger } from '../../../store/actions';
+import { checkValidity } from '../../../shared/utility';
+import './ContactData.css';
 
 function ContactData() {
   const dispatch = useDispatch();
-  const { token, userId } = useSelector(state => state.auth);
-  const { loading } = useSelector(state => state.order);
-  const { ingredients, totalPrice } = useSelector(state => state.burger);
+  const { token, userId } = useSelector((state) => state.auth);
+  const { loading } = useSelector((state) => state.order);
+  const { ingredients, totalPrice } = useSelector((state) => state.burger);
   const [orderForm, setOrderForm] = useState({
     name: {
-      elementType: "input",
+      elementType: 'input',
       elementConfig: {
-        type: "text",
-        placeholder: "Your Name"
+        type: 'text',
+        placeholder: 'Your Name'
       },
-      value: "",
+      value: '',
       validation: {
         required: true
       },
@@ -30,12 +30,12 @@ function ContactData() {
       touched: false
     },
     email: {
-      elementType: "input",
+      elementType: 'input',
       elementConfig: {
-        type: "email",
-        placeholder: "Your E-Mail"
+        type: 'email',
+        placeholder: 'Your E-Mail'
       },
-      value: "",
+      value: '',
       validation: {
         required: true,
         isEmail: true
@@ -44,12 +44,12 @@ function ContactData() {
       touched: false
     },
     street: {
-      elementType: "input",
+      elementType: 'input',
       elementConfig: {
-        type: "text",
-        placeholder: "Street"
+        type: 'text',
+        placeholder: 'Street'
       },
-      value: "",
+      value: '',
       validation: {
         required: true
       },
@@ -57,12 +57,12 @@ function ContactData() {
       touched: false
     },
     zipCode: {
-      elementType: "input",
+      elementType: 'input',
       elementConfig: {
-        type: "text",
-        placeholder: "ZIP Code"
+        type: 'text',
+        placeholder: 'ZIP Code'
       },
-      value: "",
+      value: '',
       validation: {
         required: true,
         minLength: 5,
@@ -73,12 +73,12 @@ function ContactData() {
       touched: false
     },
     country: {
-      elementType: "input",
+      elementType: 'input',
       elementConfig: {
-        type: "text",
-        placeholder: "Country"
+        type: 'text',
+        placeholder: 'Country'
       },
-      value: "",
+      value: '',
       validation: {
         required: true
       },
@@ -86,14 +86,14 @@ function ContactData() {
       touched: false
     },
     deliveryMethod: {
-      elementType: "select",
+      elementType: 'select',
       elementConfig: {
         options: [
-          { value: "fastest", displayValue: "Fastest" },
-          { value: "cheapest", displayValue: "Cheapest" }
+          { value: 'fastest', displayValue: 'Fastest' },
+          { value: 'cheapest', displayValue: 'Cheapest' }
         ]
       },
-      value: "fastest",
+      value: 'fastest',
       validation: {},
       valid: true
     }
@@ -101,7 +101,7 @@ function ContactData() {
 
   const [formIsValid, setFormIsValid] = useState(false);
 
-  const orderHandler = event => {
+  const orderHandler = (event) => {
     event.preventDefault();
     const formData = {};
     for (let formElementIdentifier in orderForm) {
@@ -153,7 +153,7 @@ function ContactData() {
         <Spinner />
       ) : (
         <form onSubmit={orderHandler}>
-          {formElementsArray.map(formElement => (
+          {formElementsArray.map((formElement) => (
             <Input
               key={formElement.id}
               elementType={formElement.config.elementType}
@@ -162,7 +162,7 @@ function ContactData() {
               invalid={!formElement.config.valid}
               shouldValidate={formElement.config.validation}
               touched={formElement.config.touched}
-              changed={event => inputChangedHandler(event, formElement.id)}
+              changed={(event) => inputChangedHandler(event, formElement.id)}
             />
           ))}
           <Button btnType="Success" disabled={!formIsValid}>

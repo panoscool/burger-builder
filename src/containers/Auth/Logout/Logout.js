@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import { Redirect } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
-import { logout } from "../../../store/actions";
+import { logout } from '../../../store/actions';
 
 function Logout() {
   const dispatch = useDispatch();

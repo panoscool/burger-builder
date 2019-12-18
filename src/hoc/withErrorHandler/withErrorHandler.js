@@ -1,10 +1,10 @@
-import React, { Fragment } from "react";
+import React, { Fragment } from 'react';
 
-import Modal from "../../components/UI/Modal/Modal";
-import useHttpErrorHandler from "../../hooks/httpErrorHandler";
+import Modal from '../../components/UI/Modal/Modal';
+import useHttpErrorHandler from '../../hooks/httpErrorHandler';
 
 const withErrorHandler = (WrappedComponent, axios) => {
-  return props => {
+  return (props) => {
     const [error, clearError] = useHttpErrorHandler(axios);
 
     return (
